@@ -11,6 +11,11 @@
 
 <body>
     <div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+    <div>
         <h1>Matrix Table</h1>
 
         <form onsubmit="getinput(); return false">
@@ -71,26 +76,16 @@
         }
 
         function multiply() {
-            let m1 = +document.querySelector(`.m1${i}`).value;
-            let m2 = +document.querySelector(`.m2${i}`).value;
-            let m3 = +document.querySelector(`.m3${i}`).value;
-            let m4 = +document.querySelector(`.m1${j}`).value;
-            let m5 = +document.querySelector(`.m2${j}`).value;
-            let m6 = +document.querySelector(`.m3${j}`).value;
-            // +document.querySelector(`#m2${i}${j}`).value;
-            console.log("m1", m1);
-            console.log("m2", m2);
-            console.log("m3", m3);
-            console.log("m4", m4);
-            console.log("m5", m5);
-            console.log("m6", m6);
-            // for (let i = 0; i < value1; i++) {
-            //     for (let j = 0; j < value2; j++) {
+            for (let i = 0; i < value1; i++) {
+                for (let j = 0; j < value2; j++) {
+                    document.getElementById(`m3${i}${j}`).value =
+                        +document.getElementById(`m1${i}${j}`).value
+                        *
+                        +document.getElementById(`m2${i}${j}`).value;
 
+                }
 
-            //     }
-
-            // }
+            }
         }
     </script>
 </body>
