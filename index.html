@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <h1>Matrix Table</h1>
+
+        <form onsubmit="getinput(); return false">
+
+            <input type="number" min="2" id="getinput1" placeholder="number1" required>
+            <input type="number" min="2" id="getinput2" placeholder="number2" required>
+            <button type="submit">Check</button>
+
+        </form><br><br>
+    </div>
+    <div>
+        <form onsubmit="sum(); return false" id="onsubmitform">
+            <h1> Matrix Sum Table</h1>
+            <div id="matrix1"></div>=
+            <div id="matrix2"></div><br>
+            <button>Sum</button><br>
+            <div id="resultmatrix"></div>
+
+        </form>
+    </div>
+    <script>
+        document.getElementById("onsubmitform").style.visibility = "hidden";
+        let value1 = "";
+        let value2 = "";
+
+        function getinput() {
+
+            let matrix1 = document.getElementById("matrix1");
+            let matrix2 = document.getElementById("matrix2");
+            let resultmatrix = document.getElementById("resultmatrix");
+
+            matrix1.innerHTML = " ";
+            matrix2.innerHTML = " ";
+            resultmatrix.innerHTML = " ";
+
+            value1 = document.getElementById("getinput1").value;
+            value2 = document.getElementById("getinput2").value;
+
+            if (value1 !== value2) {
+                alert("Matrix value must be same");
+                return;
+            }
+
+            for (let i = 0; i < value1; i++) {
+                for (let j = 0; j < value2; j++) {
+                    matrix1.innerHTML +=
+                        `<input id="m1${i}${j}"  placeholder="0" type="number">`;
+                    matrix2.innerHTML +=
+                        `<input id="m2${i}${j}"  placeholder="0" type="number">`;
+                    resultmatrix.innerHTML +=
+                        `<input id="m3${i}${j}"  readonly placeholder="0" type="number">`;
+                }
+                matrix1.innerHTML += `<br>`;
+                matrix2.innerHTML += `<br>`;
+                resultmatrix.innerHTML += `<br>`;
+            }
+            document.getElementById("onsubmitform").style.visibility = "visible";
+        }
+
+        function sum() {
+            for (let i = 0; i < value1; i++) {
+                for (let j = 0; j < value2; j++) {
+                    document.getElementById(`m3${i}${j}`).value =
+                        +document.getElementById(`m1${i}${j}`).value
+                        +
+                        +document.getElementById(`m2${i}${j}`).value;
+                }
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
