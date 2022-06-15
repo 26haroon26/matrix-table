@@ -13,21 +13,22 @@
     <div>
         <ul>
             <li><a href="index1.html">Multiply</a></li>
-            <li><a href="index2.html">Subtract</a></li>
+            <li><a href="index.html">Sum</a></li>
         </ul>
     </div>
     <div>
         <h1>Matrix Table</h1>
-
         <form onsubmit="getinput(); return false">
+
             <input type="number" min="2" id="getinput1" placeholder="number1" required>
             <input type="number" min="2" id="getinput2" placeholder="number2" required>
             <button type="submit">Check</button>
+
         </form><br><br>
     </div>
     <div>
-        <form onsubmit="sum(); return false" id="onsubmitform">
-            <h1> Matrix Sum Table</h1>
+        <form onsubmit="subtract(); return false" id="onsubmitform">
+            <h1> Matrix Subtract Table</h1>
             <div id="matrix1"></div>=
             <div id="matrix2"></div><br>
             <button>Sum</button><br>
@@ -39,18 +40,23 @@
         let value1 = "";
         let value2 = "";
         function getinput() {
+
             let matrix1 = document.getElementById("matrix1");
             let matrix2 = document.getElementById("matrix2");
             let resultmatrix = document.getElementById("resultmatrix");
+
             matrix1.innerHTML = " ";
             matrix2.innerHTML = " ";
             resultmatrix.innerHTML = " ";
+
             value1 = document.getElementById("getinput1").value;
             value2 = document.getElementById("getinput2").value;
+
             if (value1 !== value2) {
                 alert("Matrix value must be same");
                 return;
             }
+
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
                     matrix1.innerHTML +=
@@ -66,17 +72,19 @@
             }
             document.getElementById("onsubmitform").style.visibility = "visible";
         }
-        function sum() {
+
+        function subtract() {
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
                     document.getElementById(`m3${i}${j}`).value =
                         +document.getElementById(`m1${i}${j}`).value
-                        +
+                        -
                         +document.getElementById(`m2${i}${j}`).value;
                 }
 
             }
         }
+
     </script>
 
 </body>

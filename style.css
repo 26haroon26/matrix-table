@@ -47,15 +47,25 @@ body {
     background-color: #dacbcb;
 }
 
-button {
+button ,a{
     background-color: rgb(156, 143, 143);
     color: white;
     border: 1px solid black;
     border-radius: 0px 10px 0px 10px;
 }
 
-button:hover {
+button:hover ,a:hover {
     border: 2px solid yellow;
     color: white;
     background-color: black;
+}
+li{
+    list-style: none;
+    padding: 5px;
+    margin-top: 10px;
+}
+a{
+    margin-right: 50px;
+    text-decoration: none;
+    padding: 5px;
 }
