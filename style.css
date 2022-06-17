@@ -1,20 +1,35 @@
 div {
     text-align: center;
-}li{
+}
+
+li {
     padding: 5px;
     list-style-type: none;
 }
-a{
+
+a {
     border: 1px solid black;
     border-radius: 10px;
     padding: 5px;
     color: white;
-    background-color:rgb(156, 143, 143);
+    background-color: rgb(156, 143, 143);
     text-decoration: none;
-}a:hover{
+}
+
+a:hover {
     border: 2px solid yellow;
     color: white;
     background-color: black;
+}#multiple{
+    padding: 2% 10% 2% 10%;
+}
+
+#multiplication {
+    border-radius: 10px;
+    letter-spacing: 10px;
+    color: blue;
+
+
 }
 
 #matrix1,
@@ -26,12 +41,14 @@ a{
     padding: 5px;
     margin: 3px;
     display: inline-block;
-    /* width :100%; */
+
 }
 
 #matrix1>input,
 #matrix2>input,
-#resultmatrix>input,#getinput1,#getinput2 {
+#resultmatrix>input,
+#getinput1,
+#getinput2 {
     border-radius: 10px;
     border: 1px solid rgb(156, 143, 143);
     text-align: center;
@@ -39,7 +56,10 @@ a{
     padding: 2px;
     margin: 0px;
     color: blue;
-}#getinput1,#getinput2{
+}
+
+#getinput1,
+#getinput2 {
     width: 20%;
 }
 
@@ -47,24 +67,28 @@ body {
     background-color: #dacbcb;
 }
 
-button ,a{
+button,
+a {
     background-color: rgb(156, 143, 143);
     color: white;
     border: 1px solid black;
     border-radius: 0px 10px 0px 10px;
 }
 
-button:hover ,a:hover {
+button:hover,
+a:hover {
     border: 2px solid yellow;
     color: white;
     background-color: black;
 }
-li{
+
+li {
     list-style: none;
     padding: 5px;
     margin-top: 10px;
 }
-a{
+
+a {
     margin-right: 50px;
     text-decoration: none;
     padding: 5px;

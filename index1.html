@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,18 +31,19 @@
             <div id="matrix1"></div>=
             <div id="matrix2"></div><br>
             <button>Multiply</button><br>
+            <div id="multiple"><div id="multiplication"></div></div>
             <div id="resultmatrix"></div>
-
         </form>
     </div>
     <script>
         document.getElementById("onsubmitform").style.visibility = "hidden";
         let value1 = "";
         let value2 = "";
-        
+
         let matrix1 = document.querySelector("#matrix1");
         let matrix2 = document.querySelector("#matrix2");
         let resultmatrix = document.querySelector("#resultmatrix");
+        let multiplication = document.querySelector("#multiplication");
         function getinput() {
 
 
@@ -62,11 +62,11 @@
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
                     matrix1.innerHTML +=
-                    `<input class="m1${i} m1${j}" id="m1${i}${j}" placeholder="0" type="number">`;
+                        `<input id="m1${i}${j}" placeholder="0" type="number">`;
                     matrix2.innerHTML +=
-                    `<input class="m2${i} m2${j}" id="m2${i}${j}"  placeholder="0" type="number">`;
+                        `<input id="m2${i}${j}"  placeholder="0" type="number">`;
                     resultmatrix.innerHTML +=
-                        `<input class="m3${i} m3${j}" id="m3${i}${j}"  readonly placeholder="0" type="number">`;
+                        `<input id="m3${i}${j}"  readonly placeholder="0" type="number">`;
                 }
                 matrix1.innerHTML += `<br>`;
                 matrix2.innerHTML += `<br>`;
@@ -74,37 +74,88 @@
             }
             document.getElementById("onsubmitform").style.visibility = "visible";
         }
+        // pehla tariqa matrix multiply karne ke liye
 
+
+        // function multiply() {
+
+        //     let multiply1 = [];
+        //     let multiply2 = [];
+        //     let multiply3 = [];
+        //     let multiply4 = [];
+        //     for (let i = 0; i < value1; i++) {
+        //         for (let j = 0; j < value2; j++) {
+        //             let m1value = +document.querySelector(`#m1${i}${j}`).value;
+        //             let m2value = +document.querySelector(`#m2${i}${j}`).value;
+        //             multiply1.push(m1value);
+        //             multiply2.push(m2value);
+        //         //    multiplication.innerHTML +=
+        //         //         `<input class="m4${i} m4${j}" id="m4${i}${j}"  readonly placeholder="0" type="number">`;
+
+        //         }
+        //     }
+        //     for (let i = 0; i < value1; i++) {
+        //         for (let j = 0; j < value2; j++) {
+        //             let m3value = 0;
+        //             for (let k = 0; k < value1; k++) {
+        //                 m3value += multiply1[i * value1 + k] * multiply2[k * value2 + j];
+        //                 // multiplication.innerHTML += multiply1[i * value1 + k] * multiply2[k * value2 + j] +"+";
+
+
+
+        //             }
+
+        //             // multiplication.innerHTML += `<br>`;
+        //             multiply3.push(m3value);
+
+        //         }
+        //     }
+        //     for (let i = 0; i < value1; i++) {
+        //         for (let j = 0; j < value2; j++) {
+        //             document.querySelector(`#m3${i}${j}`).value = multiply3[i * value1 + j];
+        //             // multiplication.innerHTML += multiply3[i * value1 + j] + " "+"+" ;
+
+
+        //         }
+        //     }
+
+        // }
+
+        // dosra tariqa matrix multiply karne ke liye
+        document.getElementById("multiplication").style.visibility = "hidden";
         function multiply() {
-
-            let multiply1 = [];
-            let multiply2 = [];
-            let multiply3=[];
+            let multiply1 = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            let multiply2 = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            let multiply3 = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
+            let multiply4 = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
-                    let m1value = +document.querySelector(`#m1${i}${j}`).value;
-                    let m2value = +document.querySelector(`#m2${i}${j}`).value;
-                    multiply1.push(m1value);
-                    multiply2.push(m2value);
-                    
+                    multiply1[i][j] = +document.querySelector(`#m1${i}${j}`).value;
+                    multiply2[i][j] = +document.querySelector(`#m2${i}${j}`).value;
                 }
             }
+            document.querySelector("#multiplication").innerHTML = "";
             for (let i = 0; i < value1; i++) {
+                multiply3[i] = [];
                 for (let j = 0; j < value2; j++) {
-                    let m3value = 0;
+                    multiply3[i][j] = 0;
                     for (let k = 0; k < value1; k++) {
-                        m3value += multiply1[i * value1 + k] * multiply2[k * value2 + j];
+                        multiply3[i][j] += multiply1[i][k] * multiply2[k][j];
+                        multiply4[i][j] = multiply1[i][k] + "x" + multiply2[k][j] + "+" + multiply1[i][(++k)] + "x" + multiply2[k][j] + " ";
                     }
-                    multiply3.push(m3value);
                 }
             }
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
-                    document.querySelector(`#m3${i}${j}`).value = multiply3[i * value1 + j];
+                    document.querySelector(`#m3${i}${j}`).value = "";
+                    document.querySelector(`#m3${i}${j}`).value += multiply3[i][j];
+                    document.querySelector("#multiplication").innerHTML += multiply4[j] + " " + "<br>";
+
                 }
             }
-            
+            document.getElementById("multiplication").style.visibility = "visible";
         }
+
     </script>
 </body>
 
