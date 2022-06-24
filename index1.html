@@ -139,19 +139,22 @@
                 multiply3[i] = [];
                 for (let j = 0; j < value2; j++) {
                     multiply3[i][j] = 0;
+                    multiply4[i][j] = [];
                     for (let k = 0; k < value1; k++) {
                         multiply3[i][j] += multiply1[i][k] * multiply2[k][j];
-                        multiply4[i][j] = multiply1[i][k] + "x" + multiply2[k][j] + "+" + multiply1[i][(++k)] + "x" + multiply2[k][j] + " ";
+                        multiply4[i][j] +=  (`${multiply1[i][k]} x ${multiply2[k][j]} +`);
+                        // multiply1[i][k] +"x"+ multiply2[k][j] +"+"+ multiply1[i][k]  +"+"+ multiply2[k][j]
                     }
                 }
-            }
+            }console.log(multiply3);
+            console.log(multiply4);
             for (let i = 0; i < value1; i++) {
                 for (let j = 0; j < value2; j++) {
                     document.querySelector(`#m3${i}${j}`).value = "";
                     document.querySelector(`#m3${i}${j}`).value += multiply3[i][j];
-                    document.querySelector("#multiplication").innerHTML += multiply4[j] + " " + "<br>";
-
+                    document.querySelector("#multiplication").innerHTML += multiply4[i][j];
                 }
+                document.querySelector("#multiplication").innerHTML += "<br>";
             }
             document.getElementById("multiplication").style.visibility = "visible";
         }
