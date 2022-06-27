@@ -26,7 +26,7 @@
         </form><br><br>
     </div>
     <div>
-        <form onsubmit="check(); return false" id="onsubmitform">
+        <form onsubmit="check(event); return false" id="onsubmitform">
             <div id="matrix1"></div>=
             <div id="matrix2"></div><br>
             <select id="select">
@@ -79,7 +79,8 @@
             }
             document.getElementById("onsubmitform").style.visibility = "visible";
         }
-        function check() {
+        function check(e) {
+            e.preventDefault()
             let select = document.getElementById("select").value;
             console.log(select);
 
@@ -95,46 +96,37 @@
                 }
             }
             document.getElementById(`show`).innerHTML = "";
+
+            let result, showResult;
+            
             if (select == "+") {
-                let result = summatrix(array1, array2).result;
-                let showResult = summatrix(array1, array2).showResult;
-
-                for (let i = 0; i < array1.length; i++) {
-                    for (let j = 0; j < array1[i].length; j++) {
-                        document.getElementById(`m3${i}${j}`).value = result[i][j];
-                        document.getElementById(`show`).innerHTML += showResult[i][j];
-                        
-                    }
-                    document.getElementById(`show`).innerHTML += `<br>`;
-                }
+                result = summatrix(array1, array2)[0];
+                showResult = summatrix(array1, array2)[1];
+                // let [result, showResult] = summatrix(array1, array2)
             }
-            if (select == "-") {
-                let result = submatrix(array1, array2).result;
-                let showResult = submatrix(array1, array2).showResult;
-
-                for (let i = 0; i < array1.length; i++) {
-                    for (let j = 0; j < array1[i].length; j++) {
-                        document.getElementById(`m3${i}${j}`).value = result[i][j];
-                        document.getElementById(`show`).innerHTML += showResult[i][j];
-                        
-                    }
-                    document.getElementById(`show`).innerHTML += `<br>`;
-                }
-            } if (select == "x") {
-                let result = multiplymatrix(array1, array2).result;
-                let showResult = multiplymatrix(array1, array2).showResult;
-
-                for (let i = 0; i < array1.length; i++) {
-                    for (let j = 0; j < array1[i].length; j++) {
-                        document.getElementById(`m3${i}${j}`).value = result[i][j];
-                        document.getElementById(`show`).innerHTML += showResult[i][j];
-                        
-                    }
-                    document.getElementById(`show`).innerHTML += `<br>`;
-                }
+            else if (select == "-") {
+                result = submatrix(array1, array2).result;
+                showResult = submatrix(array1, array2).showResult;
+                // let { result, showResult } = submatrix(array1, array2)
+            }
+            else if (select == "x") {
+                result = multiplymatrix(array1, array2).result;
+                showResult = multiplymatrix(array1, array2).showResult;
+                // printOnScreen(result, showResult)
             }
 
+            for (let i = 0; i < array1.length; i++) {
+                for (let j = 0; j < array1[i].length; j++) {
+                    document.getElementById(`m3${i}${j}`).value = result[i][j];
+                    document.getElementById(`show`).innerHTML += showResult[i][j];
+
+                }
+                document.getElementById(`show`).innerHTML += `<br>`;
+            }
         }
+
+       
+
         function summatrix(a, b) {
             let result = [];
             let showResult = [];
@@ -143,10 +135,11 @@
                 showResult[i] = [];
                 for (let j = 0; j < a[i].length; j++) {
                     result[i][j] = a[i][j] + b[i][j];
-                    showResult[i][j] = `${a[i][j]} + ${b[i][j]}` +" ";
+                    showResult[i][j] = `${a[i][j]} + ${b[i][j]}` + " ";
                 }
             }
-             return {result :result, showResult : showResult};
+            // return { result, showResult };
+            return [result, showResult];
         }
         function submatrix(a, b) {
             let result = [];
@@ -156,10 +149,10 @@
                 showResult[i] = [];
                 for (let j = 0; j < a[i].length; j++) {
                     result[i][j] = a[i][j] - b[i][j];
-                    showResult[i][j] = `${a[i][j]} - ${b[i][j]}` +" ";
+                    showResult[i][j] = `${a[i][j]} - ${b[i][j]}` + " ";
                 }
-            } 
-            return {result :result, showResult : showResult};
+            }
+            return { result: result, showResult: showResult };
         }
         function multiplymatrix(a, b) {
             var aNumRows = a.length, aNumCols = a[0].length,
@@ -174,10 +167,10 @@
                     showResult[r][c] = [];
                     for (let i = 0; i < aNumCols; i++) {
                         result[r][c] += a[r][i] * b[i][c];
-                        showResult[r][c] += i === 0 ? `${a[r][i]} x ${b[i][c]}`+" " : `+ ${a[r][i]} x ${b[i][c]}` + " ";
+                        showResult[r][c] += i === 0 ? `${a[r][i]} x ${b[i][c]}` + " " : `+ ${a[r][i]} x ${b[i][c]}` + " ";
                     }
                 }
-            } return {result : result, showResult : showResult};
+            } return { result: result, showResult: showResult };
         }
 
     </script>
